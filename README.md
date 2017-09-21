@@ -16,7 +16,7 @@ mkdir -p ../external/slc6_amd64_gcc530/data/RecoEgamma/ElectronIdentification/
 git clone git@github.com:cms-data/RecoEgamma-ElectronIdentification ../external/slc6_amd64_gcc530/data/RecoEgamma/ElectronIdentification/data 
 git cms-addpkg CondFormats/BTauObjects
 git clone https://github.com/rappoccio/PredictedDistribution.git Analysis/PredictedDistribution
-git clone https://github.com/cmsb2g/B2GTTbar.git Analysis/B2GTTbar
+git clone https://github.com/monoTopHelicityWG/B2GTTbar.git Analysis/B2GTTbar
 git clone git@github.com:cms-jet/JetToolbox.git JMEAnalysis/JetToolbox -b jetToolbox_80X
 git clone git@github.com:cms-jet/JECDatabase.git JMEAnalysis/JECDatabase
 git clone git@github.com:cms-jet/JRDatabase.git JMEAnalysis/JRDatabase
