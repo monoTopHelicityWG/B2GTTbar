@@ -786,6 +786,10 @@ class B2GTTbarTreeMaker : public edm::one::EDAnalyzer<edm::one::SharedResources>
       Float_t JetEtaRaw                              ;
       Float_t JetPhiRaw                              ;
       Float_t JetMassRaw                             ;
+      Float_t Jet2PtRaw                               ;      
+      Float_t Jet2EtaRaw                              ;
+      Float_t Jet2PhiRaw                              ;
+      Float_t Jet2MassRaw                             ;
       // Float_t JetP                                   ;
       // Float_t JetPt                                  ;
       // Float_t JetEta                                 ;
@@ -1064,6 +1068,39 @@ class B2GTTbarTreeMaker : public edm::one::EDAnalyzer<edm::one::SharedResources>
       Float_t AK4_dRminLep_Corr                           ;
       Float_t AK4_dRminLep_CorrUp                         ;
       Float_t AK4_dRminLep_CorrDn                         ;
+
+
+
+      Float_t AK4_hadTop_jet0_Pt                             ;
+      Float_t AK4_hadTop_jet0_Eta                            ;
+      Float_t AK4_hadTop_jet0_Phi                            ;
+      Float_t AK4_hadTop_jet0_Mass                           ;
+      Float_t AK4_hadTop_jet0_Bdisc                          ;
+      Float_t AK4_hadTop_jet0_dRlep                          ;
+      Float_t AK4_hadTop_jet0_PtSmear                        ;
+      Float_t AK4_hadTop_jet0_PtSmearUp                      ;
+      Float_t AK4_hadTop_jet0_PtSmearDn                      ;
+      Float_t AK4_hadTop_jet0_PtUncorr                       ;
+      Float_t AK4_hadTop_jet0_Corr                           ;
+      Float_t AK4_hadTop_jet0_CorrUp                         ;
+      Float_t AK4_hadTop_jet0_CorrDn                         ;
+
+      Float_t AK4_hadTop_jet1_Pt                             ;
+      Float_t AK4_hadTop_jet1_Eta                            ;
+      Float_t AK4_hadTop_jet1_Phi                            ;
+      Float_t AK4_hadTop_jet1_Mass                           ;
+      Float_t AK4_hadTop_jet1_Bdisc                          ;
+      Float_t AK4_hadTop_jet1_dRlep                          ;
+      Float_t AK4_hadTop_jet1_PtSmear                        ;
+      Float_t AK4_hadTop_jet1_PtSmearUp                      ;
+      Float_t AK4_hadTop_jet1_PtSmearDn                      ;
+      Float_t AK4_hadTop_jet1_PtUncorr                       ;
+      Float_t AK4_hadTop_jet1_Corr                           ;
+      Float_t AK4_hadTop_jet1_CorrUp                         ;
+      Float_t AK4_hadTop_jet1_CorrDn                         ;
+
+
+
        
 
       // Float_t AK4BtagdRminPt                         ;
@@ -1798,7 +1835,11 @@ B2GTTbarTreeMaker::B2GTTbarTreeMaker(const edm::ParameterSet& iConfig):
   TreeSemiLept->Branch("JetPtRaw"                             , & JetPtRaw                          ,    "JetPtRaw/F"                               );                                  
   TreeSemiLept->Branch("JetEtaRaw"                            , & JetEtaRaw                         ,    "JetEtaRaw/F"                              );                                   
   TreeSemiLept->Branch("JetPhiRaw"                            , & JetPhiRaw                         ,    "JetPhiRaw/F"                              );                                   
-  TreeSemiLept->Branch("JetMassRaw"                           , & JetMassRaw                        ,    "JetMassRaw/F"                             );                                    
+  TreeSemiLept->Branch("JetMassRaw"                           , & JetMassRaw                        ,    "JetMassRaw/F"                             );                      
+  TreeSemiLept->Branch("Jet2PtRaw"                             , & Jet2PtRaw                          ,    "Jet2PtRaw/F"                               );                                  
+  TreeSemiLept->Branch("Jet2EtaRaw"                            , & Jet2EtaRaw                         ,    "Jet2EtaRaw/F"                              );                                   
+  TreeSemiLept->Branch("Jet2PhiRaw"                            , & Jet2PhiRaw                         ,    "Jet2PhiRaw/F"                              );                                   
+  TreeSemiLept->Branch("Jet2MassRaw"                           , & Jet2MassRaw                        ,    "Jet2MassRaw/F"                             );                                  
   // TreeSemiLept->Branch("JetP"                                 , & JetP                              ,    "JetP/F"                                   );                              
   // TreeSemiLept->Branch("JetPt"                                , & JetPt                             ,    "JetPt/F"                                  );                               
   // TreeSemiLept->Branch("JetEta"                               , & JetEta                            ,    "JetEta/F"                                 );                                
@@ -2084,7 +2125,38 @@ B2GTTbarTreeMaker::B2GTTbarTreeMaker(const edm::ParameterSet& iConfig):
   TreeSemiLept->Branch("AK4_dRminLep_PtUncorr"                     , & AK4_dRminLep_PtUncorr                  , "AK4_dRminLep_PtUncorr/F"  );
   TreeSemiLept->Branch("AK4_dRminLep_Corr"                         , & AK4_dRminLep_Corr                      , "AK4_dRminLep_Corr/F"    );                
   TreeSemiLept->Branch("AK4_dRminLep_CorrUp"                       , & AK4_dRminLep_CorrUp                    , "AK4_dRminLep_CorrUp/F"  );                 
-  TreeSemiLept->Branch("AK4_dRminLep_CorrDn"                       , & AK4_dRminLep_CorrDn                    , "AK4_dRminLep_CorrDn/F"  );                  
+  TreeSemiLept->Branch("AK4_dRminLep_CorrDn"                       , & AK4_dRminLep_CorrDn                    , "AK4_dRminLep_CorrDn/F"  ); 
+
+
+
+  TreeSemiLept->Branch("AK4_hadTop_jet0_Pt"                           , & AK4_hadTop_jet0_Pt                        , "AK4_hadTop_jet0_Pt/F"                     );  
+  TreeSemiLept->Branch("AK4_hadTop_jet0_Eta"                          , & AK4_hadTop_jet0_Eta                       , "AK4_hadTop_jet0_Eta/F"                    );  
+  TreeSemiLept->Branch("AK4_hadTop_jet0_Phi"                          , & AK4_hadTop_jet0_Phi                       , "AK4_hadTop_jet0_Phi/F"                    );  
+  TreeSemiLept->Branch("AK4_hadTop_jet0_Mass"                         , & AK4_hadTop_jet0_Mass                      , "AK4_hadTop_jet0_Mass/F"                   );  
+  TreeSemiLept->Branch("AK4_hadTop_jet0_Bdisc"                        , & AK4_hadTop_jet0_Bdisc                     , "AK4_hadTop_jet0_Bdisc/F"                  );  
+  TreeSemiLept->Branch("AK4_hadTop_jet0_dRlep"                        , & AK4_hadTop_jet0_dRlep                     , "AK4_hadTop_jet0_dRlep/F"                  ); 
+  TreeSemiLept->Branch("AK4_hadTop_jet0_PtSmear"                      , & AK4_hadTop_jet0_PtSmear                   , "AK4_hadTop_jet0_PtSmear/F"   );
+  TreeSemiLept->Branch("AK4_hadTop_jet0_PtSmearUp"                    , & AK4_hadTop_jet0_PtSmearUp                 , "AK4_hadTop_jet0_PtSmearUp/F" );
+  TreeSemiLept->Branch("AK4_hadTop_jet0_PtSmearDn"                    , & AK4_hadTop_jet0_PtSmearDn                 , "AK4_hadTop_jet0_PtSmearDn/F" );
+  TreeSemiLept->Branch("AK4_hadTop_jet0_PtUncorr"                     , & AK4_hadTop_jet0_PtUncorr                  , "AK4_hadTop_jet0_PtUncorr/F"  );
+  TreeSemiLept->Branch("AK4_hadTop_jet0_Corr"                         , & AK4_hadTop_jet0_Corr                      , "AK4_hadTop_jet0_Corr/F"    );                
+  TreeSemiLept->Branch("AK4_hadTop_jet0_CorrUp"                       , & AK4_hadTop_jet0_CorrUp                    , "AK4_hadTop_jet0_CorrUp/F"  );                 
+  TreeSemiLept->Branch("AK4_hadTop_jet0_CorrDn"                       , & AK4_hadTop_jet0_CorrDn                    , "AK4_hadTop_jet0_CorrDn/F"  );  
+
+
+  TreeSemiLept->Branch("AK4_hadTop_jet1_Pt"                           , & AK4_hadTop_jet1_Pt                        , "AK4_hadTop_jet1_Pt/F"                     );  
+  TreeSemiLept->Branch("AK4_hadTop_jet1_Eta"                          , & AK4_hadTop_jet1_Eta                       , "AK4_hadTop_jet1_Eta/F"                    );  
+  TreeSemiLept->Branch("AK4_hadTop_jet1_Phi"                          , & AK4_hadTop_jet1_Phi                       , "AK4_hadTop_jet1_Phi/F"                    );  
+  TreeSemiLept->Branch("AK4_hadTop_jet1_Mass"                         , & AK4_hadTop_jet1_Mass                      , "AK4_hadTop_jet1_Mass/F"                   );  
+  TreeSemiLept->Branch("AK4_hadTop_jet1_Bdisc"                        , & AK4_hadTop_jet1_Bdisc                     , "AK4_hadTop_jet1_Bdisc/F"                  );  
+  TreeSemiLept->Branch("AK4_hadTop_jet1_dRlep"                        , & AK4_hadTop_jet1_dRlep                     , "AK4_hadTop_jet1_dRlep/F"                  ); 
+  TreeSemiLept->Branch("AK4_hadTop_jet1_PtSmear"                      , & AK4_hadTop_jet1_PtSmear                   , "AK4_hadTop_jet1_PtSmear/F"   );
+  TreeSemiLept->Branch("AK4_hadTop_jet1_PtSmearUp"                    , & AK4_hadTop_jet1_PtSmearUp                 , "AK4_hadTop_jet1_PtSmearUp/F" );
+  TreeSemiLept->Branch("AK4_hadTop_jet1_PtSmearDn"                    , & AK4_hadTop_jet1_PtSmearDn                 , "AK4_hadTop_jet1_PtSmearDn/F" );
+  TreeSemiLept->Branch("AK4_hadTop_jet1_PtUncorr"                     , & AK4_hadTop_jet1_PtUncorr                  , "AK4_hadTop_jet1_PtUncorr/F"  );
+  TreeSemiLept->Branch("AK4_hadTop_jet1_Corr"                         , & AK4_hadTop_jet1_Corr                      , "AK4_hadTop_jet1_Corr/F"    );                
+  TreeSemiLept->Branch("AK4_hadTop_jet1_CorrUp"                       , & AK4_hadTop_jet1_CorrUp                    , "AK4_hadTop_jet1_CorrUp/F"  );                 
+  TreeSemiLept->Branch("AK4_hadTop_jet1_CorrDn"                       , & AK4_hadTop_jet1_CorrDn                    , "AK4_hadTop_jet1_CorrDn/F"  );                      
 
 
 
@@ -3242,6 +3314,34 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   int count_AK4 = 0;
   TLorentzVector AK4_dRMinLep_p4;
   TLorentzVector AK4_btagged_dRMinLep_p4;
+  TLorentzVector AK4_hadTop_jet0_p4;
+  TLorentzVector AK4_hadTop_jet1_p4;
+  TLorentzVector candidateJet;
+
+  int count_AK4_opposite = 0;
+  int count_AK4_opposite_fill = 0;
+  
+  double AK4_hadTop_jet0_deltaR = 99 ;
+  double AK4_hadTop_jet0_bdisc = -99 ;
+  double AK4_hadTop_jet0_ptsmear = 1 ;
+  double AK4_hadTop_jet0_ptsmearUp = 1 ;
+  double AK4_hadTop_jet0_ptsmearDn = 1 ;
+  double AK4_hadTop_jet0_ptuncorr = 0 ;
+  double AK4_hadTop_jet0_corr = 1 ;
+  double AK4_hadTop_jet0_corrUp = 1 ;
+  double AK4_hadTop_jet0_corrDn = 1 ;
+
+  double AK4_hadTop_jet1_deltaR = 99 ;
+  double AK4_hadTop_jet1_bdisc = -99 ;
+  double AK4_hadTop_jet1_ptsmear = 1 ;
+  double AK4_hadTop_jet1_ptsmearUp = 1 ;
+  double AK4_hadTop_jet1_ptsmearDn = 1 ;
+  double AK4_hadTop_jet1_ptuncorr = 0 ;
+  double AK4_hadTop_jet1_corr = 1 ;
+  double AK4_hadTop_jet1_corrUp = 1 ;
+  double AK4_hadTop_jet1_corrDn = 1 ;
+
+
   double AK4_dRMinLep_bdisc = -99;
   double AK4_btagged_dRMinLep_bdisc = -99;
   double AK4_dRMinLep_deltaR  = 99;
@@ -3289,6 +3389,10 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   for (const pat::Jet &ijet : *AK4MINI) {  
     
     if (ijet.pt()<15 || fabs(ijet.eta())>3.0) continue; 
+
+
+
+
     if (verbose_) cout<<" jet "<<count_AK4<<endl;
     count_AK4++;
 
@@ -3534,6 +3638,65 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
         if (bdisc> 0.9535  ) ak4_btag_tight  = true;
       }
     }
+
+
+
+
+
+    //------------------------------------
+    // Find jets opposite lepton hemisphere mathcing a top quark decay
+    //------------------------------------ 
+    if (runSemiLeptTree_ && count_lep ==1){
+      double deltaPhi_lep_jet = fabs( deltaPhi(corrJet.phi(), lep0_p4.Phi() )) ;
+
+      if (verbose_) cout<<"  -> deltaPhi_lep_jet "<<deltaPhi_lep_jet<<endl;
+
+      if ( deltaPhi_lep_jet >=3.14/2 ){
+        count_AK4_opposite++;
+
+      }
+
+      if ( (count_AK4_opposite_fill==1&& deltaPhi_lep_jet >=3.14/2) ){
+       
+        candidateJet.SetPtEtaPhiM( pt, eta, phi, mass );
+        std::cout << "first check point, count, mass, deltaPhiLep " << count_AK4_opposite << " " << (AK4_hadTop_jet0_p4+candidateJet).M() << " " << deltaPhi_lep_jet  << std::endl;
+    
+        if ( count_AK4_opposite_fill ==1 && deltaPhi_lep_jet > 3.14/2 && (AK4_hadTop_jet0_p4+candidateJet).M() > 100 && (AK4_hadTop_jet0_p4+candidateJet).M() < 250){
+             std::cout << "passed!, mass, deltaR " << (AK4_hadTop_jet0_p4+candidateJet).M() << " " << AK4_hadTop_jet0_p4.DeltaR(candidateJet)   << std::endl;
+                count_AK4_opposite_fill++;
+
+                AK4_hadTop_jet1_deltaR = deltaRlep;
+                AK4_hadTop_jet1_p4.SetPtEtaPhiM( pt, eta, phi, mass );
+                AK4_hadTop_jet1_bdisc = bdisc;
+                AK4_hadTop_jet1_ptsmear   = ptsmear;
+                AK4_hadTop_jet1_ptsmearUp = ptsmearUp;
+                AK4_hadTop_jet1_ptsmearDn = ptsmearDn;
+                AK4_hadTop_jet1_ptuncorr  = uncorrJet.pt();
+                AK4_hadTop_jet1_corr    = corr ;
+                AK4_hadTop_jet1_corrUp  = corrUp ;
+                AK4_hadTop_jet1_corrDn  = corrDn ;
+
+              std::cout << "pt jet 1, jet 2 " << pt << " " << AK4_hadTop_jet0_p4.Pt() << std::endl;
+        }
+      }      
+
+      if ( (count_AK4_opposite_fill==0&& deltaPhi_lep_jet >=3.14/2) ){
+        count_AK4_opposite_fill++;
+
+        AK4_hadTop_jet0_deltaR = deltaRlep;
+        AK4_hadTop_jet0_p4.SetPtEtaPhiM( pt, eta, phi, mass );
+        AK4_hadTop_jet0_bdisc = bdisc;
+        AK4_hadTop_jet0_ptsmear   = ptsmear;
+        AK4_hadTop_jet0_ptsmearUp = ptsmearUp;
+        AK4_hadTop_jet0_ptsmearDn = ptsmearDn;
+        AK4_hadTop_jet0_ptuncorr  = uncorrJet.pt();
+        AK4_hadTop_jet0_corr    = corr ;
+        AK4_hadTop_jet0_corrUp  = corrUp ;
+        AK4_hadTop_jet0_corrDn  = corrDn ;
+      }
+
+    }
+
   } //end AK4 loop
 
   if (verbose_) {
@@ -3588,6 +3751,7 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   }
 
   int count_AK8CHS = 0;
+  int count_SemiLeptAK8CHS = 0;
   // int count_AK8CHS_good = 0;
   int count_fill_leptTree =0;
 
@@ -3687,7 +3851,7 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
       }
     }
     // Only need 3rd jet and beyond to find jet 0 and jet1 nearest neighbors (above)
-    if(count_AK8CHS>1) continue; 
+    if(count_AK8CHS>4) continue; 
 
     //------------------------------------
     // AK8CHS JEC L23 correction
@@ -5503,14 +5667,52 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
       }   
     } 
 
+
+
+
+
     // Semilept Jet opposite lepton
     if (verbose_) cout<<"count_lep "<<count_lep<<endl;
     if (runSemiLeptTree_ && count_lep ==1){
       double deltaPhi_lep_jet = fabs( deltaPhi(corrJet.phi(), lep0_p4.Phi() )) ;
       if (verbose_) cout<<"  -> deltaPhi_lep_jet "<<deltaPhi_lep_jet<<endl;
+      Jet2PtRaw   = 0.0;
+      Jet2EtaRaw  = 0.0;
+      Jet2PhiRaw  = 0.0;
+      Jet2MassRaw = 0.0;
+      // second jet oposite lepton
+      if (count_SemiLeptAK8CHS ==1){
+           
+            TLorentzVector leadingJet;
+            leadingJet.SetPtEtaPhiM(JetPtRaw,JetEtaRaw,JetPhiRaw,JetMassRaw);
+            TLorentzVector candidateJet;
+            candidateJet.SetPtEtaPhiM(uncorrJet.pt(),uncorrJet.eta(),uncorrJet.phi(),uncorrJet.mass());
+            double deltaPhi_lep_jet = fabs( deltaPhi(leadingJet.Phi(), lep0_p4.Phi() )) ;
+
+            //std::cout << "first check point, count, mass, deltaPhiLep " << count_AK8CHS << " " << (leadingJet+candidateJet).M() << " " << deltaPhi_lep_jet  << std::endl;
+            if (verbose_) cout<<"  -> deltaPhi_lep_jet "<<deltaPhi_lep_jet<<endl;
+            // AK8 jet should be in opposite hemisphere from lepton. If leading jet matches then use it. If it doensn't then check the second leading jet.
+            if ( count_SemiLeptAK8CHS ==1 && deltaPhi_lep_jet > 3.14/2 && (leadingJet+candidateJet).M() > 100 && (leadingJet+candidateJet).M() < 250){
+                 // std::cout << "passed!, mass, deltaR " << (leadingJet+candidateJet).M() << " " << leadingJet.DeltaR(candidateJet)   << std::endl;
+
+                  count_SemiLeptAK8CHS++;
+                  Jet2PtRaw                              = uncorrJet.pt()      ;                 
+                  Jet2EtaRaw                             = uncorrJet.eta()     ;                  
+                  Jet2PhiRaw                             = uncorrJet.phi()     ;   
+                  Jet2MassRaw                            = uncorrJet.mass()    ;   
+
+                  //std::cout << "passed jet 2 " <<  Jet2PtRaw << " " << Jet2EtaRaw << " " << Jet2PhiRaw << " " << Jet2MassRaw << std::endl;
+                  //std::cout << "passed jet 1 " << JetPtRaw << " " << JetEtaRaw << " " << JetPhiRaw << " " << JetMassRaw << std::endl;
+                  break;
+            }
+      } // second jet oposite lepton
+
+
       // AK8 jet should be in opposite hemisphere from lepton. If leading jet matches then use it. If it doensn't then check the second leading jet.
       if ( ((count_AK8CHS==0&& deltaPhi_lep_jet >=3.14/2) || (count_AK8CHS==1&&deltaPhi_lep_jet >=3.14/2)) && count_fill_leptTree==0 ){
         if (verbose_) cout<<"Put jet variables in semilept tree  -> count_AK8CHS "<<count_AK8CHS<<" count_fill_leptTree"<<count_fill_leptTree<<endl;
+        count_SemiLeptAK8CHS++;
+
         count_fill_leptTree++;
         AK8jet_SemiLept_P4corr.SetPtEtaPhiM( corrJet.pt(), corrJet.eta(), corrJet.phi(), corrJet.mass() );
 
@@ -5521,7 +5723,8 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
         JetPtRaw                              = uncorrJet.pt()      ;                 
         JetEtaRaw                             = uncorrJet.eta()     ;                  
         JetPhiRaw                             = uncorrJet.phi()     ;   
-        JetMassRaw                            = uncorrJet.mass()    ;                                           
+        JetMassRaw                            = uncorrJet.mass()    ;   
+        std::cout << "not yet passed jet 1 " << JetPtRaw << " " << JetEtaRaw << " " << JetPhiRaw << " " << JetMassRaw << std::endl;                                        
         // JetP                                  = corrJet.P()         ;        
         // JetPt                                 = corrJet.pt()        ;                  
         // JetEta                                = corrJet.eta()       ;                  
@@ -5823,6 +6026,9 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
           }
         }
       } // end if this jet is opposite the lepton
+
+
+
     }// end if event has 1 lepton
     count_AK8CHS++;
   }
@@ -6074,6 +6280,42 @@ B2GTTbarTreeMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
         AK4_dRminLep_Corr      = AK4_dRMinLep_corr       ;
         AK4_dRminLep_CorrUp    = AK4_dRMinLep_corrUp     ;
         AK4_dRminLep_CorrDn    = AK4_dRMinLep_corrDn     ;
+
+        AK4_hadTop_jet0_Pt        = AK4_hadTop_jet0_p4.Perp() ;
+        AK4_hadTop_jet0_Eta       = AK4_hadTop_jet0_p4.Eta()  ;
+        AK4_hadTop_jet0_Phi       = AK4_hadTop_jet0_p4.Phi()  ;
+        AK4_hadTop_jet0_Mass      = AK4_hadTop_jet0_p4.M()    ;
+        AK4_hadTop_jet0_Bdisc     = AK4_hadTop_jet0_bdisc     ;
+        AK4_hadTop_jet0_dRlep     = AK4_hadTop_jet0_deltaR    ;
+       
+        AK4_hadTop_jet0_PtSmear   = AK4_hadTop_jet0_ptsmear    ;
+        AK4_hadTop_jet0_PtSmearUp = AK4_hadTop_jet0_ptsmearUp  ;
+        AK4_hadTop_jet0_PtSmearDn = AK4_hadTop_jet0_ptsmearDn  ;
+        AK4_hadTop_jet0_PtUncorr  = AK4_hadTop_jet0_ptuncorr   ;
+
+        AK4_hadTop_jet0_Corr      = AK4_hadTop_jet0_corr       ;
+        AK4_hadTop_jet0_CorrUp    = AK4_hadTop_jet0_corrUp     ;
+        AK4_hadTop_jet0_CorrDn    = AK4_hadTop_jet0_corrDn     ;
+
+
+        AK4_hadTop_jet1_Pt        = AK4_hadTop_jet1_p4.Perp() ;
+        AK4_hadTop_jet1_Eta       = AK4_hadTop_jet1_p4.Eta()  ;
+        AK4_hadTop_jet1_Phi       = AK4_hadTop_jet1_p4.Phi()  ;
+        AK4_hadTop_jet1_Mass      = AK4_hadTop_jet1_p4.M()    ;
+        AK4_hadTop_jet1_Bdisc     = AK4_hadTop_jet1_bdisc     ;
+        AK4_hadTop_jet1_dRlep     = AK4_hadTop_jet1_deltaR    ;
+       
+        AK4_hadTop_jet1_PtSmear   = AK4_hadTop_jet1_ptsmear    ;
+        AK4_hadTop_jet1_PtSmearUp = AK4_hadTop_jet1_ptsmearUp  ;
+        AK4_hadTop_jet1_PtSmearDn = AK4_hadTop_jet1_ptsmearDn  ;
+        AK4_hadTop_jet1_PtUncorr  = AK4_hadTop_jet1_ptuncorr   ;
+
+        AK4_hadTop_jet1_Corr      = AK4_hadTop_jet1_corr       ;
+        AK4_hadTop_jet1_CorrUp    = AK4_hadTop_jet1_corrUp     ;
+        AK4_hadTop_jet1_CorrDn    = AK4_hadTop_jet1_corrDn     ;
+
+
+
 
         // Closest b-tagged jet to the lepton
         // I don't think we need this 
